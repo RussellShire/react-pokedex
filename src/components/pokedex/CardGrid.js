@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import Cards from './Cards';
 
 const CardGrid = ( { pokedex, isLoading, query }) => {
     
@@ -12,10 +13,8 @@ const CardGrid = ( { pokedex, isLoading, query }) => {
             ) : 
             filteredPokemon(pokedex).map((pokemon) => {
               return (
-                <section className="cards">
-                  <div>{pokemon.name}</div>
-                  <img src={pokemon.image} alt={pokemon.name}/>
-                  <p>{pokemon.type}</p>
+                <section className='cards'>
+                    <Cards  pokemon={pokemon} />
                 </section>
                 )
             })
