@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import axios from 'axios'
 import './App.css';
 import CardGrid from './components/pokedex/CardGrid';
+import Search from './components/Search';
 
 function App() {
   const [pokedex, setPokedex] = useState([]);
@@ -42,9 +43,12 @@ function App() {
   // console.log(pokedex)
   
   return (
+    <>
+      <Search getQuery={(q) => setQuery(q)} />
     <div className='container'>
       <CardGrid pokedex={pokedex} isLoading={isLoading} query={query} />
     </div>
+    </>
   )
 }
 
