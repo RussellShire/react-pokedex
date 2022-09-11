@@ -14,7 +14,7 @@ const CardGrid = ( { pokedex, isLoading, query }) => {
             filteredPokemon(pokedex).map((pokemon) => {
               return (
                 <section className='cards'>
-                    <Cards  pokemon={pokemon} />
+                    <Cards key={pokemon.id} pokemon={pokemon}></Cards>
                 </section>
                 )
             })
