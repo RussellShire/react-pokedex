@@ -3,17 +3,17 @@ import React from 'react';
 const Filters = ( { pokedex, isLoading, getFilter }) => {
     const types = pokedex.map(pokemon => pokemon.type) // get an array of type arrays
                          .flat() // flatten arrays into single array
-                         .filter((value,index,self)=>self.indexOf(value)===index) // filter unique
+                         .filter((value,index,self) => self.indexOf(value) === index) // filter unique
                          .sort() // sort alphbetically
                         
     const onClick = (f) => {
         let checked = Array.from(document.querySelectorAll('input[type=checkbox]:checked')) // gets all selected checkboxes
-        const selected = Array.from(checked).map(x => x.value) // turns a node list into an array
+        const selected = Array.from(checked).map(check => check.value) // turns a node list into an array
         
         getFilter(selected)
     }
 
-    const reset = (r) => {
+    const onReset = (r) => {
         let checked = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
         for (const el of checked) {
             el.checked = false;
@@ -24,22 +24,22 @@ const Filters = ( { pokedex, isLoading, getFilter }) => {
 
     return (
         isLoading ? '' : 
-            <ul className="Filter">
-                <p>Types</p>
+            <ul className='filter'>
+                <h2>Types</h2>
                     {types.map(type => (
-                        <li key={type}>
+                        <li key={type} className='check'>
                             <input 
-                                type="checkbox" 
+                                type='checkbox' 
                                 id={type} 
                                 name={type} 
                                 value={type}
                                 onClick={(e) => onClick(e.target.value)}
                             />
-                            <label htmlFor={type}>{type}</label><br></br>
+                            <label className='capitalise' htmlFor={type}>{type}</label><br></br>
                             
                         </li>
                     ))}
-                <button onClick={(e) => reset(e.target.value)}>Reset</button>
+                <button className='button' onClick={(e) => onReset(e.target.value)}>Reset types</button>
             </ul>
     )
 }
