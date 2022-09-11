@@ -13,6 +13,15 @@ const Filters = ( { pokedex, isLoading, getFilter }) => {
         getFilter(selected)
     }
 
+    const reset = (r) => {
+        let checked = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
+        for (const el of checked) {
+            el.checked = false;
+          }
+        
+        onClick('')
+    }
+
     return (
         isLoading ? '' : 
             <ul className="Filter">
@@ -27,8 +36,10 @@ const Filters = ( { pokedex, isLoading, getFilter }) => {
                                 onClick={(e) => onClick(e.target.value)}
                             />
                             <label htmlFor={type}>{type}</label><br></br>
+                            
                         </li>
                     ))}
+                <button onClick={(e) => reset(e.target.value)}>Reset</button>
             </ul>
     )
 }
