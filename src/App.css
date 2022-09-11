@@ -55,6 +55,8 @@ input[type='text'] {
 .card-front,
 .card-back {
     background-color: pink;
+    border-radius: 0.5rem;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,6 +64,7 @@ input[type='text'] {
     width: 10rem;
     height: 14rem;
     margin: 2rem;
+
     position: absolute;
     margin: auto;
     -webkit-backface-visibility: hidden;

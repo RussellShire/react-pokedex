@@ -2,9 +2,9 @@ import React from 'react';
 
 const Filters = ( { pokedex, isLoading, getFilter }) => {
     const types = pokedex.map(pokemon => pokemon.type) // get an array of type arrays
-                        .flat() // flatten arrays into single array
-                        .filter((value,index,self)=>self.indexOf(value)===index) // filter unique
-                        // order and sort
+                         .flat() // flatten arrays into single array
+                         .filter((value,index,self)=>self.indexOf(value)===index) // filter unique
+                         .sort() // sort alphbetically
                         
     const onClick = (f) => {
         let checked = Array.from(document.querySelectorAll('input[type=checkbox]:checked')) // gets all selected checkboxes
@@ -14,9 +14,7 @@ const Filters = ( { pokedex, isLoading, getFilter }) => {
     }
 
     return (
-        isLoading ? (
-            <p>loading...</p>
-            ) : 
+        isLoading ? '' : 
             <ul className="Filter">
                 <p>Types</p>
                     {types.map(type => (

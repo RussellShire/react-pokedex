@@ -11,13 +11,17 @@ const CardGrid = ( { pokedex, isLoading, query, filters }) => {
         return pokedex.filter(pokemon => pokemon.type.some(type => filters.includes(type)))
     }
 
-    // const searched = searchedPokemon()
-    
+    let sortedPokemon = []
+   
+    filters.length === 0 ? 
+        sortedPokemon = searchedPokemon(pokedex) :
+        sortedPokemon = searchedPokemon(filteredPokemon(pokedex))
+
     return (
         isLoading ? (
             <p>loading...</p>
             ) : 
-            searchedPokemon(filteredPokemon(pokedex)).map((pokemon) => {
+            sortedPokemon.map((pokemon) => {
               return (
                 <section className='cards'>
                     <Cards key={pokemon.id} pokemon={pokemon}></Cards>

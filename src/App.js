@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios'
 import './App.css';
 import CardGrid from './components/pokedex/CardGrid';
 import Search from './components/Search';
@@ -42,10 +41,6 @@ function App() {
 
     fetchItems(151)
   }, []);
-
-  
-  // console.log(pokedex)
-  // console.log(filter)
 
   return (
     <>
