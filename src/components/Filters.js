@@ -1,16 +1,14 @@
-import React from "react";
+import React from 'react';
 
 const Filters = ( { pokedex, isLoading, getFilter }) => {
-    // const [checked, setChecked] = useState([])
-    
     const types = pokedex.map(pokemon => pokemon.type) // get an array of type arrays
                         .flat() // flatten arrays into single array
                         .filter((value,index,self)=>self.indexOf(value)===index) // filter unique
                         // order and sort
-
+                        
     const onClick = (f) => {
-        let checked = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
-        const selected = Array.from(checked).map(x => x.value)
+        let checked = Array.from(document.querySelectorAll('input[type=checkbox]:checked')) // gets all selected checkboxes
+        const selected = Array.from(checked).map(x => x.value) // turns a node list into an array
         
         getFilter(selected)
     }

@@ -42,14 +42,17 @@ function App() {
 
     fetchItems(151)
   }, []);
+
+  
   // console.log(pokedex)
-  console.log(filter)
+  // console.log(filter)
+
   return (
     <>
       <Search getQuery={(q) => setQuery(q)} />
       <Filters pokedex={pokedex} isLoading={isLoading} getFilter={(f) => setFilter(f)} />
     <div className='container'>
-      <CardGrid pokedex={pokedex} isLoading={isLoading} query={query} />
+      <CardGrid pokedex={pokedex} isLoading={isLoading} query={query} filters={filter} />
     </div>
     </>
   )
