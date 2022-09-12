@@ -35,7 +35,7 @@ const Filters = ( { pokedex, isLoading, getFilter }) => {
                                 value={type}
                                 onClick={(e) => onClick(e.target.value)}
                             />
-                            <label className='capitalise' htmlFor={type}>{type}</label><br></br>
+                            <label className='capitalise filter-types' htmlFor={type}>{type}</label><br></br>
                             
                         </li>
                     ))}

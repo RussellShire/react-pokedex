@@ -5,17 +5,22 @@ const Cards = ({ pokemon }) => {
         <div className="card">
             <div className='card-inner'>
                 <div className='card-front capitalise'>
-                    <img key={pokemon.id} src={pokemon.image} alt={pokemon.name}/>
-                    <h1>{pokemon.name}</h1>
-                    <p>Type: {pokemon.type.map(type => <>{type} </>)}</p>
+                    <div className='image-background'>
+                        <img key={pokemon.id} src={pokemon.image} alt={pokemon.name}/>
+                    </div>
+
+                    <h1 className='pokemon-title'>{pokemon.name}</h1>
+                    <p className='pokemon-types'>Type: {pokemon.type.map(type => <>{type} </>)}</p>
                 </div>
 
                 <div className='card-back'>
-                    <img src={pokemon.backImage} alt={`Behind ${pokemon.name}`}/>
-                    <h2>Stats</h2>
+                    <div className='image-background'>
+                        <img src={pokemon.backImage} alt={`Behind ${pokemon.name}`}/>
+                    </div>
+                    <h2 className='stats-ti'>Stats</h2>
                         <ul className='stats'>
                             <li>
-                                HP: {pokemon.hp}
+                                Hp: {pokemon.hp}
                             </li>
                             <li>
                                 Attack: {pokemon.attack}

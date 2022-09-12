@@ -50,8 +50,6 @@ function App() {
     fetchItems(251)
   }, []);
 
-  console.log(pokedex)
-
   return (
     <>
       <Search getQuery={(q) => setQuery(q)} />

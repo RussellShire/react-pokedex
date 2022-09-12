@@ -21,13 +21,15 @@ const CardGrid = ( { pokedex, isLoading, query, filters }) => {
         isLoading ? (
             <p>loading...</p>
             ) : 
+            <section className='container'>{
             sortedPokemon.map((pokemon) => {
               return (
-                <section className='cards'>
+                <div className='cards'>
                     <Cards key={pokemon.id} pokemon={pokemon}></Cards>
-                </section>
+                </div>
                 )
-            })
+            })}
+            </section>
         ) 
     }
 
