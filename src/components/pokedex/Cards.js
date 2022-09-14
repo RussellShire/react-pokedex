@@ -19,7 +19,7 @@ const Cards = ({ pokemon }) => {
                     <div className='image-background'>
                         <img src={pokemon.backImage} alt={`Behind ${pokemon.name}`}/>
                     </div>
-                    <h2 className='stats-ti'>Stats</h2>
+                    <h2 className='stats-title'>Stats</h2>
                         <ul className='stats'>
                             <li>
                                 Hp: {pokemon.hp}
