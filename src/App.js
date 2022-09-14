@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import CardGrid from './components/pokedex/CardGrid';
 import Search from './components/Search';
-import Filters from './components/Filters';
+import Dropdown from './components/Dropdown';
 
 function App() {
   const [pokedex, setPokedex] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState('');
-  const [filter, setFilter] = useState([]);
+  const [typeFilter, setTypeFilter] = useState([]);
+  const [types, setTypes] = useState([]);
 
   useEffect(() => {
     const fetchItems = async (count) => {
@@ -16,6 +17,8 @@ function App() {
       const data = await results.json()
       const pokeNames = await data.results.map(pokemon => pokemon.name)
       
+      
+
       const pokemon = await Promise.all(
         pokeNames.map(async pokemon => {
             const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}` 
@@ -44,18 +47,24 @@ function App() {
       );
       
       setPokedex(pokemon)
+      const types = pokemon.map(pokemon => pokemon.type) // get an array of type arrays
+                         .flat() // flatten arrays into single array
+                         .filter((value,index,self) => self.indexOf(value) === index) // filter unique
+                         .sort() // sort alphbetically
+      setTypes(types)
       setIsLoading(false)
+
     }
 
-    fetchItems(251)
+    fetchItems(386)
   }, []);
 
   return (
     <>
       <Search getQuery={(q) => setQuery(q)} />
-      <Filters pokedex={pokedex} isLoading={isLoading} getFilter={(f) => setFilter(f)} />
+      <Dropdown label='Types' types={types} isLoading={isLoading} getFilter={(f) => setTypeFilter(f)}/>
     <div className='container'>
-      <CardGrid pokedex={pokedex} isLoading={isLoading} query={query} filters={filter} />
+      <CardGrid pokedex={pokedex} isLoading={isLoading} query={query} typeFilter={typeFilter} />
     </div>
     </>
   )

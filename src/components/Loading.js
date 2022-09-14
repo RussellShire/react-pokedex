@@ -5,7 +5,7 @@ const Loading = () => {
     return (
         <div style={{
             display: 'flex', 
-            'flex-direction': 'column'}}>
+            flexDirection: 'column'}}>
             <img className='loading' src={pokeball} style={{ 
                 width: '200px',
                 margin: 'auto',
