@@ -6,7 +6,8 @@ const Search = ( { getQuery }) => {
 
     const onChange = (q) => {
         setText(q)
-        getQuery(q)
+        const lower = q.toLowerCase()
+        getQuery(lower)
     }
 
     return (
