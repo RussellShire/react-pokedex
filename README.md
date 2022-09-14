@@ -13,13 +13,13 @@ Display all Pokemon upto Gen III with basic info
 - More filters can be added at a later date
 - No libraries or depencancies should be added except React and pokeapi
 
-#Credit
+# Credit
 
 Inspiration was taken from a different project by Brad Traversy: (https://github.com/bradtraversy/breaking-bad-cast)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-#Usage
+# Usage
 
 ```
 # Install dependencies
