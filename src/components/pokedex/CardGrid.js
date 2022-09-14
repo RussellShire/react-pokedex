@@ -1,4 +1,5 @@
 import React from 'react';
+import Loading from '../Loading';
 import Cards from './Cards';
 
 const CardGrid = ( { pokedex, isLoading, query, filters }) => {
@@ -19,7 +20,10 @@ const CardGrid = ( { pokedex, isLoading, query, filters }) => {
 
     return (
         isLoading ? (
-            <p>loading...</p>
+            <>
+                <p>loading...</p>
+                <Loading />
+            </>
             ) : 
             <section className='container'>{
             sortedPokemon.map((pokemon) => {
