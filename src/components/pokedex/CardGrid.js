@@ -21,7 +21,6 @@ const CardGrid = ( { pokedex, isLoading, query, filters }) => {
     return (
         isLoading ? (
             <>
-                <p>loading...</p>
                 <Loading />
             </>
             ) : 

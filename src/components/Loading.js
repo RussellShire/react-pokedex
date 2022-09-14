@@ -1,15 +1,20 @@
 import React from 'react';
-import pokeball from '../img/8-bit-pokeball.png'
+import pokeball from '../img/8-bit-pokeball-cropped.png'
 
 const Loading = () => {
     return (
-        <img className='loading' src={pokeball} style={{ 
-            width: '200px',
-            margin: 'auto',
-            display: 'block'
-        }}
-        alt='Loading'
-        />
+        <div style={{
+            display: 'flex', 
+            'flex-direction': 'column'}}>
+            <img className='loading' src={pokeball} style={{ 
+                width: '200px',
+                margin: 'auto',
+                display: 'block'
+            }}
+            alt='Loading'
+            />
+            <h1>Loading...</h1>
+        </div>
     )
 }
 
