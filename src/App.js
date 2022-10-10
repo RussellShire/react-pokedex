@@ -63,9 +63,9 @@ function App() {
     <>
       <Search getQuery={(q) => setQuery(q)} />
       <Dropdown label='Types' types={types} isLoading={isLoading} getFilter={(f) => setTypeFilter(f)}/>
-    <div className='container'>
-      <CardGrid pokedex={pokedex} isLoading={isLoading} query={query} typeFilter={typeFilter} />
-    </div>
+      <div className='container'>
+        <CardGrid pokedex={pokedex} isLoading={isLoading} query={query} typeFilter={typeFilter} />
+      </div>
     </>
   )
 }
