@@ -2,6 +2,10 @@
 
 Display all Pokemon upto Gen III with basic info
 
+# Hosted
+
+https://russellshire.github.io/react-pokedex/
+
 # Project specifications
 
 - Using the pokeapi to get data
@@ -14,8 +18,6 @@ Display all Pokemon upto Gen III with basic info
 - No libraries or depencancies should be added except React and pokeapi
 
 # Credit
-
-Inspiration was taken from a different project by Brad Traversy: (https://github.com/bradtraversy/breaking-bad-cast)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
