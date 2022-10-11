@@ -16,8 +16,6 @@ function App() {
       const results = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${count}`)
       const data = await results.json()
       const pokeNames = await data.results.map(pokemon => pokemon.name)
-      
-      
 
       const pokemon = await Promise.all(
         pokeNames.map(async pokemon => {
