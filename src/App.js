@@ -10,10 +10,11 @@ function App() {
   const [query, setQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState([]);
   const [types, setTypes] = useState([]);
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    const fetchItems = async (count) => {
-      const results = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${count}`)
+    const fetchItems = async (offset, count) => {
+      const results = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${count}`)
       const data = await results.json()
       const pokeNames = await data.results.map(pokemon => pokemon.name)
 
@@ -43,8 +44,10 @@ function App() {
           }
         )
       );
+
+      setPokedex([...pokedex, ...pokemon])
       
-      setPokedex(pokemon)
+      // setPokedex(pokemon)
       const types = pokemon.map(pokemon => pokemon.type) // get an array of type arrays
                          .flat() // flatten arrays into single array
                          .filter((value,index,self) => self.indexOf(value) === index) // filter unique
@@ -53,9 +56,14 @@ function App() {
       setIsLoading(false)
 
     }
+    // let offset = 0
+    fetchItems(offset, 30)
+  }, [offset]);
 
-    fetchItems(386)
-  }, []);
+  const onPress = () => {
+    setOffset(offset + 30)
+    console.log('pressed')
+  }
 
   return (
     <>
@@ -64,6 +72,14 @@ function App() {
       <div className='container'>
         <CardGrid pokedex={pokedex} isLoading={isLoading} query={query} typeFilter={typeFilter} />
       </div>
+      <button
+        className='button' 
+        style={{
+            padding: '0.5rem', 
+            marginLeft: '1rem', 
+            marginBottom: '1rem'}} 
+        onClick={() => onPress()}
+      >press</button>
     </>
   )
 }
