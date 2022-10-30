@@ -1,6 +1,6 @@
 # A Pokedex created in React
 
-Display all Pokemon upto Gen III with basic info
+A Pokedex with basic info for each Pokemon that is both searchable and filterable.
 
 # Hosted
 
