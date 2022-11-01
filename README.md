@@ -37,3 +37,9 @@ npm start
 # Build app
 npm run build
 ```
+
+```
+# npm run deploy
+
+Updates hosted Github Pages
+```
