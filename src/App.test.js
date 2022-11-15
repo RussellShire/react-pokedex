@@ -12,9 +12,6 @@ import ReactDOM from 'react-dom';
 describe('App', () => {
   const div = document.createElement('div')
   ReactDOM.render(<App />, div);
-  // it('returns data from PokeAPI', () => {
-  //   expect(pokedex).toBeTruthy()
-  // })
-
+    
 })
 
