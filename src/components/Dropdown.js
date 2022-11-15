@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const Dropdown = ( { label, types, getFilter, isLoading } ) => {
     // const types = pokedex.map(pokemon => pokemon.type) // get an array of type arrays
@@ -55,5 +56,12 @@ const Dropdown = ( { label, types, getFilter, isLoading } ) => {
         </div>
     )
 }
+
+Dropdown.propTypes = {
+    label: PropTypes.string,
+    types: PropTypes.array.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    getFilter: PropTypes.func
+};
 
 export default Dropdown
