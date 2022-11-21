@@ -23,6 +23,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Usage
 
+Tested and working on React 18.2.0, November 2022
+
 ```
 # Install dependencies
 npm install
