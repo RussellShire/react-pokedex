@@ -45,17 +45,23 @@ function App() {
       );
       
       setPokedex(pokemon)
-      const types = pokemon.map(pokemon => pokemon.type) // get an array of type arrays
-                         .flat() // flatten arrays into single array
-                         .filter((value,index,self) => self.indexOf(value) === index) // filter unique
-                         .sort() // sort alphbetically
-      setTypes(types)
       setIsLoading(false)
-
     }
 
     fetchItems(386)
   }, []);
+
+  useEffect(() => {
+    if(pokedex.length > 0) { 
+    const types = pokedex.map(pokemon => pokemon.type) // get an array of type arrays
+                         .flat() // flatten arrays into single array
+                         .filter((value,index,self) => self.indexOf(value) === index) // filter unique
+                         .sort() // sort alphbetically
+    setTypes(types)
+    // console.log('set Types useEffect fired')
+    }
+
+  }, [pokedex])
 
   return (
     <>
