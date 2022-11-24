@@ -17,6 +17,11 @@ https://russellshire.github.io/react-pokedex/
 - More filters can be added at a later date
 - No libraries or depencancies should be added except React and pokeapi
 
+# Optional To Do:
+
+- Rename filters
+- Add second dropdown for another filter
+
 # Credit
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

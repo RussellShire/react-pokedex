@@ -58,9 +58,7 @@ function App() {
                          .filter((value,index,self) => self.indexOf(value) === index) // filter unique
                          .sort() // sort alphbetically
     setTypes(types)
-    // console.log('set Types useEffect fired')
     }
-
   }, [pokedex])
 
   return (
