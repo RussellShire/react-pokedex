@@ -5,7 +5,10 @@ import Search from './components/Search';
 import Dropdown from './components/Dropdown';
 
 function App() {
+  const [tempPokedex, setTempPokedex] = useState([]);
   const [pokedex, setPokedex] = useState([]);
+  const [count, setCount] = useState(0);
+
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState([]);
@@ -44,12 +47,16 @@ function App() {
         )
       );
       
-      setPokedex(pokemon)
+      setTempPokedex(pokemon)
       setIsLoading(false)
     }
 
-    fetchItems(386)
-  }, []);
+    fetchItems(10)
+  }, [count]);
+
+  useEffect(() => {
+    setPokedex((prev) => [...prev, ...tempPokedex])
+  }, [tempPokedex])
 
   useEffect(() => {
     if(pokedex.length > 0) { 
@@ -61,8 +68,14 @@ function App() {
     }
   }, [pokedex])
 
+const testClicked = () => {
+  setCount(count + 1)
+}
+
   return (
     <>
+      <button onClick={() => testClicked()}>test</button>
+      <p>{count}</p>
       <Search getQuery={(q) => setQuery(q)} />
       <Dropdown label='Types' types={types} isLoading={isLoading} getFilter={(f) => setTypeFilter(f)}/>
       <div className='container'>
