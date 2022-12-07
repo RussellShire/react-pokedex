@@ -7,7 +7,6 @@ import Dropdown from './components/Dropdown';
 function App() {
   const [tempPokedex, setTempPokedex] = useState([]);
   const [pokedex, setPokedex] = useState([]);
-  const [count, setCount] = useState(12);
   const [offset, setOffset] = useState(0);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +16,7 @@ function App() {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const results = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${count}&offset=${offset}`)
+      const results = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=12&offset=${offset}`)
       const data = await results.json()
       const pokeNames = await data.results.map(pokemon => pokemon.name)
 
@@ -53,7 +52,7 @@ function App() {
     }
 
     fetchItems()
-  }, [count]);
+  }, [offset]);
 
   useEffect(() => {
     setPokedex((prev) => [...prev, ...tempPokedex])
@@ -71,14 +70,13 @@ function App() {
 
 const testClicked = () => {
   const interval = 12;
-  setCount(count + interval)
   setOffset(offset + interval)
 }
 
   return (
     <>
       <button onClick={() => testClicked()}>test</button>
-      <p>{count}</p>
+      <p>{offset}</p>
       <Search getQuery={(q) => setQuery(q)} />
       <Dropdown label='Types' types={types} isLoading={isLoading} getFilter={(f) => setTypeFilter(f)}/>
       <div className='container'>
