@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Filters = ( { pokedex, isLoading, getFilter }) => {
+const Filters = ({ pokedex, isLoading, getFilter }) => {
     const types = pokedex.map(pokemon => pokemon.type) // get an array of type arrays
                          .flat() // flatten arrays into single array
                          .filter((value,index,self) => self.indexOf(value) === index) // filter unique

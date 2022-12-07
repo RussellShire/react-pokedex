@@ -4,6 +4,8 @@ import CardGrid from './components/pokedex/CardGrid';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
 
+const interval = 12;
+
 function App() {
   const [tempPokedex, setTempPokedex] = useState([]);
   const [pokedex, setPokedex] = useState([]);
@@ -16,7 +18,7 @@ function App() {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const results = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=12&offset=${offset}`)
+      const results = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${interval}&offset=${offset}`)
       const data = await results.json()
       const pokeNames = await data.results.map(pokemon => pokemon.name)
 
@@ -68,15 +70,24 @@ function App() {
     }
   }, [pokedex])
 
-const testClicked = () => {
-  const interval = 12;
-  setOffset(offset + interval)
-}
+  window.addEventListener("scroll", () => {
+    const bottomElm = document.getElementById('bottom')
+    const bottomLoc = window.scrollY + bottomElm.getBoundingClientRect().y
+
+    if((window.scrollY + window.innerHeight) > (bottomLoc-100)){
+        console.log('scroll listener')
+        
+        setOffset(offset + interval)
+        // setIsLoading(true)
+    }
+  })
 
   return (
     <>
-      <button onClick={() => testClicked()}>test</button>
+      {/* for testing */}
       <p>{offset}</p>
+      {/* for testing */}
+      
       <Search getQuery={(q) => setQuery(q)} />
       <Dropdown label='Types' types={types} isLoading={isLoading} getFilter={(f) => setTypeFilter(f)}/>
       <div className='container'>
