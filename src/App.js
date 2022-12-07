@@ -4,7 +4,7 @@ import CardGrid from './components/pokedex/CardGrid';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
 
-const interval = 12;
+const interval = 3;
 
 function App() {
   const [tempPokedex, setTempPokedex] = useState([]);
@@ -16,17 +16,38 @@ function App() {
   const [typeFilter, setTypeFilter] = useState([]);
   const [types, setTypes] = useState([]);
 
-  // Event listener needs tiding up, and also triggering on more than just scroll.
-  window.addEventListener("scroll", () => {
-  const bottomElm = document.getElementById('bottom')
-  const bottomLoc = window.scrollY + bottomElm.getBoundingClientRect().y
+  // // Event listener needs tiding up, and also triggering on more than just scroll.
+  // window.addEventListener("scroll", () => {
+  // const bottomElm = document.getElementById('bottom')
+  // const bottomLoc = window.scrollY + bottomElm.getBoundingClientRect().y
 
-  if((window.scrollY + window.innerHeight) > (bottomLoc-100)){
-      console.log('scroll listener')
+  // if((window.scrollY + window.innerHeight) > (bottomLoc-100)){
+  //     // console.log('scroll listener')
       
-      setOffset(offset + interval)
-  }
-  })
+  //     setOffset(offset + interval)
+  // }
+  // })
+
+  useEffect(() => {
+    function createObserver() {  
+      let options = {
+        root: document.getElementById('root'),
+        rootMargin: '0px',
+        threshold: 1.0
+      }
+  
+      let callback = () => {
+        console.log('spotted!')
+        setOffset(offset + interval)
+      }
+      
+      let observer = new IntersectionObserver(callback, options);
+  
+      observer.observe(document.getElementById('bottom'));
+    }
+
+    createObserver();
+  }, [offset])
 
   useEffect(() => {
     const fetchItems = async () => {

@@ -19,10 +19,9 @@ https://russellshire.github.io/react-pokedex/
 
 # Optional To Do:
 
+- Make intersection observer stop firing continiously
 - Rename filters
 - Add second dropdown for another filter
-- Clean up scroll event listener
-- Make event listener fire without scroll
 - Filter out pokemon from end of pokedex that are region specific or cosplay types
 - Fix UI bug where pokemon names over two lines become left aligned
 - Add comma between Types when there are multiple types
