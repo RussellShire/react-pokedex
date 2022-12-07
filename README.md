@@ -21,6 +21,12 @@ https://russellshire.github.io/react-pokedex/
 
 - Rename filters
 - Add second dropdown for another filter
+- Clean up scroll event listener
+- Make event listener fire without scroll
+- Filter out pokemon from end of pokedex that are region specific or cosplay types
+- Fix UI bug where pokemon names over two lines become left aligned
+- Add comma between Types when there are multiple types
+- Sometimes images do not load (especially back images), make so they don't show broken if they haven't loaded. Seems to be some back images are null
 
 # Credit
 

@@ -16,6 +16,18 @@ function App() {
   const [typeFilter, setTypeFilter] = useState([]);
   const [types, setTypes] = useState([]);
 
+  // Event listener needs tiding up, and also triggering on more than just scroll.
+  window.addEventListener("scroll", () => {
+  const bottomElm = document.getElementById('bottom')
+  const bottomLoc = window.scrollY + bottomElm.getBoundingClientRect().y
+
+  if((window.scrollY + window.innerHeight) > (bottomLoc-100)){
+      console.log('scroll listener')
+      
+      setOffset(offset + interval)
+  }
+  })
+
   useEffect(() => {
     const fetchItems = async () => {
       const results = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${interval}&offset=${offset}`)
@@ -33,6 +45,7 @@ function App() {
                 name: data.name,
                 id: data.id,
                 image: data.sprites['front_default'],
+                // image: data.sprites[8][2]['front-default'],
                 backImage: data.sprites['back_default'],
                 weight: data.weight,
                 height: data.height,
@@ -70,18 +83,7 @@ function App() {
     }
   }, [pokedex])
 
-  window.addEventListener("scroll", () => {
-    const bottomElm = document.getElementById('bottom')
-    const bottomLoc = window.scrollY + bottomElm.getBoundingClientRect().y
-
-    if((window.scrollY + window.innerHeight) > (bottomLoc-100)){
-        console.log('scroll listener')
-        
-        setOffset(offset + interval)
-        // setIsLoading(true)
-    }
-  })
-
+  
   return (
     <>
       {/* for testing */}
