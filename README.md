@@ -19,7 +19,8 @@ https://russellshire.github.io/react-pokedex/
 
 # Optional To Do:
 
-- Make intersection observer stop firing continiously
+- Make intersection observer only fire when element interects with screen
+- Stop intersection observer when there is no more data to load from API
 - Rename filters
 - Add second dropdown for another filter
 - Filter out pokemon from end of pokedex that are region specific or cosplay types

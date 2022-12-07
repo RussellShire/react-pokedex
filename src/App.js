@@ -66,7 +66,6 @@ function App() {
                 name: data.name,
                 id: data.id,
                 image: data.sprites['front_default'],
-                // image: data.sprites[8][2]['front-default'],
                 backImage: data.sprites['back_default'],
                 weight: data.weight,
                 height: data.height,
