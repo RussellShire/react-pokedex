@@ -7,7 +7,8 @@ import Dropdown from './components/Dropdown';
 function App() {
   const [tempPokedex, setTempPokedex] = useState([]);
   const [pokedex, setPokedex] = useState([]);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(12);
+  const [offset, setOffset] = useState(0);
 
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState('');
@@ -15,8 +16,8 @@ function App() {
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
-    const fetchItems = async (count) => {
-      const results = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${count}`)
+    const fetchItems = async () => {
+      const results = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${count}&offset=${offset}`)
       const data = await results.json()
       const pokeNames = await data.results.map(pokemon => pokemon.name)
 
@@ -51,7 +52,7 @@ function App() {
       setIsLoading(false)
     }
 
-    fetchItems(10)
+    fetchItems()
   }, [count]);
 
   useEffect(() => {
@@ -69,7 +70,9 @@ function App() {
   }, [pokedex])
 
 const testClicked = () => {
-  setCount(count + 1)
+  const interval = 12;
+  setCount(count + interval)
+  setOffset(offset + interval)
 }
 
   return (
