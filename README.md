@@ -22,9 +22,11 @@ https://russellshire.github.io/react-pokedex/
 - Stop intersection observer when there is no more data to load from API
 - move intersection observer into custom hook - https://www.youtube.com/watch?v=wkztoWlwTXU&ab_channel=QixotlLFC
 - Restyle loading animation for bottom of screen
+- Currently new cards only load if bottom of screen is there, but user won't feel need to scroll down if line of cards isn't full
 - Rename filters
 - Add second dropdown for another filter
-- Filter out pokemon from end of pokedex that are region specific or cosplay types
+- Add animation for cards loading in
+- Filter out pokemon from end of pokedex that are region specific or 'cosplay' types
 - Fix UI bug where pokemon names over two lines become left aligned
 - Add comma between Types when there are multiple types
 - Sometimes images do not load (especially back images), make so they don't show broken if they haven't loaded. Seems to be some back images are null
