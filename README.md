@@ -20,6 +20,7 @@ https://russellshire.github.io/react-pokedex/
 # Optional To Do:
 
 - Stop intersection observer when there is no more data to load from API
+- move intersection observer into custom hook - https://www.youtube.com/watch?v=wkztoWlwTXU&ab_channel=QixotlLFC
 - Restyle loading animation for bottom of screen
 - Rename filters
 - Add second dropdown for another filter

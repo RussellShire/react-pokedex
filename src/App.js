@@ -3,7 +3,6 @@ import './App.css';
 import CardGrid from './components/pokedex/CardGrid';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
-import Loading from './components/Loading';
 
 const interval = 3;
 
@@ -112,7 +111,7 @@ function App() {
         <CardGrid pokedex={pokedex} isLoading={isLoading} query={query} typeFilter={typeFilter} />
       </div>
       <div ref={targetRef}>
-        <Loading />
+        Loading...
       </div>
       
     </>
