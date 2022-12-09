@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import './App.css';
 import CardGrid from './components/pokedex/CardGrid';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
+import Loading from './components/Loading';
 
 const interval = 3;
 
 function App() {
+  const targetRef = useRef(null);
+  // const [isVisible, setIsVisible] = useState(false);
+
   const [tempPokedex, setTempPokedex] = useState([]);
   const [pokedex, setPokedex] = useState([]);
   const [offset, setOffset] = useState(0);
@@ -16,38 +20,30 @@ function App() {
   const [typeFilter, setTypeFilter] = useState([]);
   const [types, setTypes] = useState([]);
 
-  // // Event listener needs tiding up, and also triggering on more than just scroll.
-  // window.addEventListener("scroll", () => {
-  // const bottomElm = document.getElementById('bottom')
-  // const bottomLoc = window.scrollY + bottomElm.getBoundingClientRect().y
-
-  // if((window.scrollY + window.innerHeight) > (bottomLoc-100)){
-  //     // console.log('scroll listener')
-      
-  //     setOffset(offset + interval)
-  // }
-  // })
+  const options = useMemo(() => {
+    return {
+      root: null, 
+      rootMargin: '0px',
+      threshold: 0
+    }
+  }, [])
 
   useEffect(() => {
-    function createObserver() {  
-      let options = {
-        root: document.getElementById('root'),
-        rootMargin: '0px',
-        threshold: 1.0
-      }
-  
-      let callback = () => {
-        console.log('spotted!')
+    const callback = entries => {
+      const entry = entries[0];
+      if(entry.isIntersecting){;
         setOffset(offset + interval)
       }
-      
-      let observer = new IntersectionObserver(callback, options);
-  
-      observer.observe(document.getElementById('bottom'));
     }
+    
+    const observer = new IntersectionObserver(callback, options);
+    const currentTarget = targetRef.current;
+    if(currentTarget) observer.observe(currentTarget);
 
-    createObserver();
-  }, [offset])
+    return () => {
+      if(currentTarget) observer.unobserve(currentTarget);
+    }
+  }, [targetRef, options, offset])
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -115,6 +111,10 @@ function App() {
       <div className='container'>
         <CardGrid pokedex={pokedex} isLoading={isLoading} query={query} typeFilter={typeFilter} />
       </div>
+      <div ref={targetRef}>
+        <Loading />
+      </div>
+      
     </>
   )
 }
