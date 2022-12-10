@@ -4,21 +4,22 @@ import CardGrid from './components/pokedex/CardGrid';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
 
+// How many Pokemon to fetch at once
 const interval = 3;
 
 function App() {
   const targetRef = useRef(null);
-  // const [isVisible, setIsVisible] = useState(false);
 
+  const [offset, setOffset] = useState(0);
   const [tempPokedex, setTempPokedex] = useState([]);
   const [pokedex, setPokedex] = useState([]);
-  const [offset, setOffset] = useState(0);
 
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState([]);
   const [types, setTypes] = useState([]);
 
+  // Intersection Observer for load on scroll
   const options = useMemo(() => {
     return {
       root: null, 
@@ -44,6 +45,7 @@ function App() {
     }
   }, [targetRef, options, offset])
 
+  // API Fetch
   useEffect(() => {
     const fetchItems = async () => {
       const results = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${interval}&offset=${offset}`)
@@ -84,10 +86,13 @@ function App() {
     fetchItems()
   }, [offset]);
 
+  // Adding to the Pokedex state
   useEffect(() => {
     setPokedex((prev) => [...prev, ...tempPokedex])
   }, [tempPokedex])
 
+
+  // Build an array of Pokemon types for filter
   useEffect(() => {
     if(pokedex.length > 0) { 
     const types = pokedex.map(pokemon => pokemon.type) // get an array of type arrays
@@ -113,7 +118,6 @@ function App() {
       <div ref={targetRef}>
         Loading...
       </div>
-      
     </>
   )
 }
