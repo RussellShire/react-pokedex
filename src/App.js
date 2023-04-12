@@ -107,7 +107,7 @@ function App() {
   return (
     <>
       {/* for testing */}
-      <p>{offset}</p>
+      {/*<p>{offset}</p>*/}
       {/* for testing */}
       
       <Search getQuery={(q) => setQuery(q)} />
